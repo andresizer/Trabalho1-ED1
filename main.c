@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#define MAX 14
+#define MAX 3
 
 int codes[MAX]; // Declara um array para armazenar códigos com tamanho máximo de 14
 int count = 0;  // Inicializa a contagem de elementos na lista como zero
@@ -13,15 +13,25 @@ void displayCodes() {
     }
 }
 
-// Função para encontrar a posição de um código na lista
-int findPosition(int code) {
-    for (int i = 0; i < count; i++) {
-        if (codes[i] == code) {
-            return i; // Retorna a posição se o código for encontrado
+int findPosition(int position) {
+     for (int i = 0; i < count; i++) {
+        if (i == position) {
+            return codes[i]; // Retorna o código se for encontrado
         }
     }
-    return -1; // Retorna -1 se o código não for encontrado
+    return -1; // Retorna -1 se a posicao não for encontrada
 }
+
+
+// // Função para encontrar a posição de um código na lista
+// int findPosition(int code) {
+//     for (int i = 0; i < count; i++) {
+//         if (codes[i] == code) {
+//             return i; // Retorna a posição se o código for encontrado
+//         }
+//     }
+//     return -1; // Retorna -1 se o código não for encontrado
+// }
 
 // Função para inserir um código em uma determinada posição na lista
 void insertCode(int code, int position) {
@@ -72,7 +82,7 @@ int main() {
 
     while (1) {
         printf("\nMenu:\n");
-        printf("1. Consultar Codigo\n");
+        printf("1. Consultar Posicao\n");
         printf("2. Inserir Codigo\n");
         printf("3. Remover Codigo\n");
         printf("4. Quantidade de Elementos\n");
@@ -83,13 +93,18 @@ int main() {
 
         switch (choice) {
             case 1:
-                printf("Digite o codigo a ser consultado: ");
-                scanf("%d", &code);
-                position = findPosition(code);
-                if (position != -1) {
+                if (count == 0) {
+                    printf("\nA lista esta vazia\n");
+                    break;
+                }
+                printf("Digite a posicao a ser consultada: ");
+                scanf("%d", &position);
+                code = findPosition(position);
+                
+                if (code != -1) {
                     printf("O codigo %d esta na posicao %d.\n", code, position);
                 } else {
-                    printf("O codigo %d nao foi encontrado na lista.\n", code);
+                    printf("A posicao nao foi encontrada na lista.\n");
                 }
                 break;
             case 2:
@@ -100,7 +115,7 @@ int main() {
                 insertCode(code, position);
                 break;
             case 3:
-                printf("Digite a posicao do codigo a ser removido: ");
+                printf("Digite a posição do codigo a ser removido: ");
                 scanf("%d", &position);
                 removeCode(position);
                 break;
