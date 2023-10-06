@@ -1,18 +1,10 @@
-/******************************************************************************
-
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <stdio.h>
-
 #define MAX 14
 
-int codes[MAX];
-int count = 0;
+int codes[MAX]; // Declara um array para armazenar códigos com tamanho máximo de 14
+int count = 0;  // Inicializa a contagem de elementos na lista como zero
 
+// Função para exibir os códigos presentes na lista
 void displayCodes() {
     printf("Códigos na lista:\n");
     for (int i = 0; i < count; i++) {
@@ -20,15 +12,17 @@ void displayCodes() {
     }
 }
 
+// Função para encontrar a posição de um código na lista
 int findPosition(int code) {
     for (int i = 0; i < count; i++) {
         if (codes[i] == code) {
-            return i;
+            return i; // Retorna a posição se o código for encontrado
         }
     }
-    return -1; // Código não encontrado
+    return -1; // Retorna -1 se o código não for encontrado
 }
 
+// Função para inserir um código em uma determinada posição na lista
 void insertCode(int code, int position) {
     int i = count;
     if (count >= MAX) {
@@ -41,7 +35,7 @@ void insertCode(int code, int position) {
         position = count;
     }
 
-    // Desloque os elementos para abrir espaço para o novo código
+    // Desloca os elementos para abrir espaço para o novo código
     for (i; i > position - 1; i--) {
         codes[i + 1] = codes[i];
     }
@@ -51,6 +45,7 @@ void insertCode(int code, int position) {
     printf("Código inserido com sucesso.\n");
 }
 
+// Função para remover um código de uma determinada posição na lista
 void removeCode(int position) {
     if (count == 0) {
         printf("A lista está vazia. Não há código para remover.\n");
@@ -62,7 +57,7 @@ void removeCode(int position) {
         return;
     }
 
-    // Desloque os elementos após a posição removida para preencher o espaço vazio
+    // Desloca os elementos após a posição removida para preencher o espaço vazio
     for (int i = position; i < count - 1; i++) {
         codes[i] = codes[i + 1];
     }
@@ -124,4 +119,3 @@ int main() {
 
     return 0;
 }
-
